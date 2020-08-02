@@ -1,0 +1,68 @@
+{% extends 'shop/layout.html' %}
+
+{% block content %}
+<div style="padding-bottom: 20px;">
+<h4 class="category-title">
+<span>Bicikleta per Femije</span>
+</h4>
+</div>
+<div class="row">
+{%for bike in kid_bikes%}
+
+    <div class="col-md-3">
+        <div class="ibox">
+            <div class="ibox-content product-box">
+                <div class="product-imitation">
+                <img src="{{bike.image.url}}" class="product-img" alt="">
+                </div>
+                <div class="product-desc">
+                    <span class="product-price">{{bike.price}} ALL  </span>
+                    <small class="text-muted">Madhesia :{{bike.size}}</small>
+                    <a href="#" class="product-name"> {{bike.name}}</a>
+                    <div class="small m-t-xs">
+                    {{bike.description}}
+                    </div>
+                    <div class="m-t text-righ">
+                        <a href="#" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endfor%}
+    </div>
+
+<div style="padding-bottom: 20px;">
+<h4 class="category-title">
+<span>Bicikleta BMX</span>
+</h4>
+</div>
+<div class="row">
+{%for bike in BMX_bikes%}
+
+    <div class="col-md-3">
+        <div class="ibox">
+            <div class="ibox-content product-box">
+                <div class="product-imitation">
+                <img src="{{bike.image.url}}" class="product-img" alt="">
+                </div>
+                <div class="product-desc">
+                    <span class="product-price">{{bike.price}} ALL  </span>
+                    <small class="text-muted">Madhesia :{{bike.size}}</small>
+                    <a href="#" class="product-name"> {{bike.name}}</a>
+                    <div class="small m-t-xs">
+                    {{bike.description}}
+                    </div>
+                    <div class="m-t text-righ">
+                        <a href="#" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endfor%}
+    </div>
+
+{% endblock %}
