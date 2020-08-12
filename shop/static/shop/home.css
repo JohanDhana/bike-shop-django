@@ -159,3 +159,63 @@ table.shoping-cart-table tr td:last-child {
 .product-img{
 max-width: 215px;
 }
+
+/*navbar*/
+#navbarNav .navbar-nav .nav-link {
+    color: #ffffff;
+    font-weight: bolder;
+}
+.bg-white #navbarNav .navbar-nav .nav-link {
+    color: #000000;
+    font-weight: bolder;
+}
+.navbar-brand {
+    opacity: 0;
+}
+.navbar-expand-lg {
+    -webkit-transition: all .35s;
+    transition: all .35s;
+}
+.carousel-control-next, .carousel-control-prev {
+    z-index: 10;
+    width: 5%;
+}
+.carousel-control-next span, .carousel-control-prev span {
+    font-size: 44px;
+}
+.carousel-control-next:hover span, .carousel-control-prev:hover span{
+    outline: 1px solid #000000;
+}
+.main-carousel-item {
+    height: 100vh;
+    min-height: 360px;
+}
+.carousel-caption {
+    background-color: rgba(2, 2, 2, 0.35);
+    left: 0;
+    bottom: 0;
+}
+.carousel-caption .caption-text {
+    position: absolute;
+    top: calc(50% - 163px);
+}
+
+@media (max-width: 991px) {
+    .main-carousel-item {
+        height: auto;
+        max-height: 640px;
+    }
+    #navbarNav .navbar-nav .nav-link {
+        color: #000;
+    }
+    .navbar-light {
+        background-color: #ffffff !important;
+        padding-top: 8px !important;
+    }
+    .navbar-brand {
+        opacity: 1;
+    }
+    .carousel-control-next, .carousel-control-prev {
+        width: 15%;
+    }
+}
