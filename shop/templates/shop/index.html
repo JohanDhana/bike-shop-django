@@ -1,68 +1,116 @@
 {% extends 'shop/layout.html' %}
 
 {% block content %}
-<div style="padding-bottom: 20px;">
-<h4 class="category-title">
-<span>Bicikleta per Femije</span>
-</h4>
-</div>
-<div class="row">
-{%for bike in kid_bikes%}
 
-    <div class="col-md-3">
-        <div class="ibox">
-            <div class="ibox-content product-box">
-                <div class="product-imitation">
-                <img src="{{bike.image.url}}" class="product-img" alt="">
-                </div>
-                <div class="product-desc">
-                    <span class="product-price">{{bike.price}} ALL  </span>
-                    <small class="text-muted">Madhesia :{{bike.size}}</small>
-                    <a href="#" class="product-name"> {{bike.name}}</a>
-                    <div class="small m-t-xs">
-                    {{bike.description}}
+<!--carousel-->
+    <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item main-carousel-item position-relative active">
+                <img src="media/bicikleta-cover.jpg" class="d-block w-100" alt="cover-1">
+                <div class="carousel-caption d-none d-md-block w-100 h-100">
+                    <div class="text-center font-italic caption-text w-100 py-4">
+                        <h1 class="display-4">Bli dhe riparo bicikleten tende</h1>
+                        <h3 class="font-weight-bolder">Bicikleta ne shitje te reja dhe te perdorura</h3>
                     </div>
-                    <div class="m-t text-righ">
-                        <a href="#" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a>
+                </div>
+            </div>
+            <div class="carousel-item main-carousel-item position-relative">
+                <img src="https://images.unsplash.com/photo-1542245796-946699811998?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" class="d-block w-100" alt="cover-2">
+                <div class="carousel-caption d-none d-md-block w-100 h-100">
+                    <div class="text-center font-italic caption-text w-100 py-4">
+                        <h1 class="display-4">Bli dhe riparo bicikleten tende 2</h1>
+                        <h3 class="font-weight-bolder">Bicikleta ne shitje te reja dhe te perdorura</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item main-carousel-item position-relative">
+                <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" class="d-block w-100" alt="cover-2">
+                <div class="carousel-caption d-none d-md-block w-100 h-100">
+                    <div class="text-center font-italic caption-text w-100 py-4">
+                        <h1 class="display-4">Bli dhe riparo bicikleten tende 2</h1>
+                        <h3 class="font-weight-bolder">Bicikleta ne shitje te reja dhe te perdorura</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item main-carousel-item position-relative">
+                <img src="https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1503&q=80" class="d-block w-100" alt="cover-2">
+                <div class="carousel-caption d-none d-md-block w-100 h-100">
+                    <div class="text-center font-italic caption-text w-100 py-4">
+                        <h1 class="display-4">Bli dhe riparo bicikleten tende 2</h1>
+                        <h3 class="font-weight-bolder">Bicikleta ne shitje te reja dhe te perdorura</h3>
                     </div>
                 </div>
             </div>
         </div>
+        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+            <span class="fas fa-caret-left p-0 pr-4 text-light" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+            <span class="fas fa-caret-right p-0 pl-4 text-light" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
+<!--end carousel-->
 
-{% endfor%}
-    </div>
-
-<div style="padding-bottom: 20px;">
-<h4 class="category-title">
-<span>Bicikleta BMX</span>
-</h4>
-</div>
-<div class="row">
-{%for bike in BMX_bikes%}
-
-    <div class="col-md-3">
-        <div class="ibox">
-            <div class="ibox-content product-box">
-                <div class="product-imitation">
-                <img src="{{bike.image.url}}" class="product-img" alt="">
-                </div>
-                <div class="product-desc">
-                    <span class="product-price">{{bike.price}} ALL  </span>
-                    <small class="text-muted">Madhesia :{{bike.size}}</small>
-                    <a href="#" class="product-name"> {{bike.name}}</a>
-                    <div class="small m-t-xs">
-                    {{bike.description}}
-                    </div>
-                    <div class="m-t text-righ">
-                        <a href="#" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="category-title pt-5"><span>Bicikleta per Femije</span></h4>
+        </div>
+        {%for bike in kid_bikes%}
+            <div class="col-md-3">
+                <div class="ibox">
+                    <div class="ibox-content product-box">
+                        <div class="product-imitation">
+                        <img src="{{bike.image.url}}" class="product-img" alt="">
+                        </div>
+                        <div class="product-desc">
+                            <span class="product-price">{{bike.price}} ALL  </span>
+                            <small class="text-muted">Madhesia :{{bike.size}}</small>
+                            <a href="/bike/{{bike.name}}" class="product-name"> {{bike.name}}</a>
+                            <div class="small m-t-xs">
+                            {{bike.description}}
+                            </div>
+                            <div class="m-t text-righ">
+                                <a href="/bike/{{bike.name}}" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        {% endfor%}
     </div>
 
-{% endfor%}
+
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h4 class="category-title"><span>Bicikleta BMX</span></h4>
+        </div>
+        {%for bike in BMX_bikes%}
+            <div class="col-md-3">
+                <div class="ibox">
+                    <div class="ibox-content product-box">
+                        <div class="product-imitation">
+                        <img src="{{bike.image.url}}" class="product-img" alt="">
+                        </div>
+                        <div class="product-desc">
+                            <span class="product-price">{{bike.price}} ALL  </span>
+                            <small class="text-muted">Madhesia :{{bike.size}}</small>
+                            <a href="/bike/{{bike.name}}" class="product-name"> {{bike.name}}</a>
+                            <div class="small m-t-xs">
+                            {{bike.description}}
+                            </div>
+                            <div class="m-t text-righ">
+                                <a href="/bike/{{bike.name}}" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor%}
     </div>
+</div>
 
 {% endblock %}

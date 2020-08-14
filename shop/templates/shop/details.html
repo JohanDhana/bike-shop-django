@@ -1,0 +1,26 @@
+{% extends 'shop/layout.html' %}
+
+{% block content %}
+
+<style>
+    #navbarNav .navbar-nav .nav-link {
+        color: #000;
+    }
+</style>
+
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="display-4">{{bike.name}}</h1>
+            <img src="{{bike.image.url}}" class="product-img" alt="">
+            <div class="m-t-xs text-uppercase pt-4">
+                {{bike.description}}
+            </div>
+            <small class="text-muted">Madhesia :{{bike.size}}</small><br>
+            <span class="badge badge-info">{{bike.price}} ALL  </span>
+        </div>
+    </div>
+</div>
+        
+
+{% endblock %}
