@@ -54,30 +54,27 @@
 <!--end carousel-->
 
 <div class="container">
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-md-12">
-            <h4 class="category-title pt-5"><span>Bicikleta per Femije</span></h4>
+            <h2 class="font-weight-bold mb-3">Bicikleta per Femije</h2>
         </div>
+    </div>
+    <div class="row row-cols-1 row-cols-lg-4 row-cols-md-3">
         {%for bike in kid_bikes%}
-            <div class="col-md-3">
-                <div class="ibox">
-                    <div class="ibox-content product-box">
-                        <div class="product-imitation">
-                        <img src="{{bike.image.url}}" class="product-img" alt="">
-                        </div>
-                        <div class="product-desc">
-                            <span class="product-price">{{bike.price}} ALL  </span>
-                            <small class="text-muted">Madhesia :{{bike.size}}</small>
-                            <a href="/bike/{{bike.name}}" class="product-name"> {{bike.name}}</a>
-                            <div class="small m-t-xs">
-                            {{bike.description}}
-                            </div>
-                            <div class="m-t text-righ">
-                                <a href="/bike/{{bike.name}}" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a>
+            <div class="col mb-4 bike">
+                <a href="/bike/{{ bike.name }}" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{{bike.image.url}}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{bike.name}}</h5>
+                            <p class="card-text">{{bike.description}}</p>
+                            <div class="d-flex align-items-center justify-content-between mt-1">
+                                <span class="product-price">{{bike.price}} ALL  </span>
+                                <small class="text-muted">Madhesia :{{bike.size}}</small>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         {% endfor%}
     </div>
@@ -85,30 +82,26 @@
 
     <div class="row mt-5">
         <div class="col-md-12">
-            <h4 class="category-title"><span>Bicikleta BMX</span></h4>
+            <h2 class="font-weight-bold mb-3">Bicikleta BMX</h2>
         </div>
+    </div>
+    <div class="row row-cols-1 row-cols-lg-4 row-cols-md-3">
         {%for bike in BMX_bikes%}
-            <div class="col-md-3">
-                <div class="ibox">
-                    <div class="ibox-content product-box">
-                        <div class="product-imitation">
-                        <img src="{{bike.image.url}}" class="product-img" alt="">
-                        </div>
-                        <div class="product-desc">
-                            <span class="product-price">{{bike.price}} ALL  </span>
-                            <small class="text-muted">Madhesia :{{bike.size}}</small>
-                            <a href="/bike/{{bike.name}}" class="product-name"> {{bike.name}}</a>
-                            <div class="small m-t-xs">
-                            {{bike.description}}
-                            </div>
-                            <div class="m-t text-righ">
-                                <a href="/bike/{{bike.name}}" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a>
+            <div class="col mb-4 bike">
+                <a href="/bike/{{ bike.name }}" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{{bike.image.url}}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{bike.name}}</h5>
+                            <p class="card-text">{{bike.description}}</p>
+                            <div class="d-flex align-items-center justify-content-between mt-1">
+                                <span class="product-price">{{bike.price}} ALL  </span>
+                                <small class="text-muted">Madhesia :{{bike.size}}</small>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
-
         {% endfor%}
     </div>
 </div>
