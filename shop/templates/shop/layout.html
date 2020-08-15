@@ -10,6 +10,7 @@
 
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'shop/home.css' %}">
+{% block extrahead %}{% endblock %}
 
   <title>Bike shop</title>
 </head>
@@ -30,7 +31,7 @@
                     <a class="nav-link" href="#">Galery</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contacts</a>
+                    <a class="nav-link" href="/contact">Contact us</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link btn btn-outline-success my-2 my-sm-0 py-1 login" href="/admin">Log in</a>

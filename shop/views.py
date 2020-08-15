@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import Bikes
+from .forms import ContactForm
+
 # Create your views here.
 
 
@@ -17,3 +19,24 @@ def details(request, name):
     show_bike = {'bike': selected_bike}
     return render(request, 'shop/details.html', show_bike)
 
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            print(form.data)
+            return HttpResponseRedirect('/thank-you')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = ContactForm()
+
+    return render(request, 'shop/contact.html', {'form': form})
+
+
+def thank(request):
+    return render(request, 'shop/thank.html')
