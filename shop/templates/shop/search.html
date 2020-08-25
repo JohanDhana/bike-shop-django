@@ -1,0 +1,109 @@
+{% extends 'shop/layout.html' %}
+
+{% load static %}
+{% block extrahead  %}
+    <link rel="stylesheet" href="{% static 'shop/search.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row" style="background-color: #f2f5f6;">
+    <div class="col-lg-12">
+      <div class="row align-items-center">
+        <div class="col-md-3 back-home">
+          <a href="/" class=" btn mr-4 d-flex align-items-center text-secondary"
+            style="font-size: 20px;">
+            <span >Back</span>
+          </a>
+        </div>
+        <div class="col-md-9">
+          <h3 class="title-h3">
+            <span>{{usedQuery}}&nbsp;</span>
+            <span style="font-size: 16px;">{{bikes|length }} </span>
+            <span style="font-size: 16px;"> activities found</span>
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-12">
+      <div class="row">
+        <div class="col-md-3 col-sm-12">
+          <div class="row bg-white ml-0 pt-2 pb-2 mb-4 shadow">
+            <div class="col-sm-12 btn-filter">
+              <button class="btn btn-default btn-block text-left text-secondary dropdown-toggle pl-0"
+                 (click)="showSearchBox = !showSearchBox">
+                Filter tours
+              </button>
+            </div>
+            <div class="w-100 search-box" >
+            <form method="POST">
+              {% csrf_token %}
+              <div class="col-sm-12 position-relative" >
+           {{form.query}}
+            
+              </div>
+              <div class="col-sm-12 mt-2">
+                {{form.category}}
+              </div>
+              <div class="col-sm-12 my-2">
+                {{form.size}}
+              </div>
+              <div class=" col-sm-12">
+                <button type="submit"      class="form__field btn btn-block btn-outline-danger">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-9 col-sm-12" style="margin-bottom: 15px;">
+          <div class="position-relative" style="min-height: 328px;">
+
+                   {% if bikes %}
+            <ul class="list-group pull-down">
+                {% for item in bikes  %}
+              <li class="list-group-item p-0" >
+                <a href="/bike/{{item.name}}" title="{{item.name}}" class="link" style="text-decoration: none;">
+                  <div class="row m-0">
+                    <div class="col-12 col-sm-6 col-md-4 px-0">
+                      <img  title="{{item.name}}" src="{{item.image.url}}"
+                        class="mx-auto d-block img-fluid">
+{% comment %}<span class="description-category"   style="background-color: #73C82C  !important;left:0;">{{item.bike_categories}}</span> {% endcomment %}
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-8 text-left text-sm-left">
+                      <h4 class="tour-title">{{ item.name }}</h4>
+                      <p class="mb-2">
+                        <span class="small bg-warning text-white p-0 pl-1 pr-1">{{ item.bike_categories }}</span>
+                      </p>
+                      <p  class="subtitle">
+                        <span>{{item.description}}</span>
+                      </p>
+                  
+                      <h4 class="pt-2 mb-0 text-left">
+                        <span class="small text-secondary" >
+                       Madhesia &nbsp;<span class="small">{{ item.size }}</span>
+                        </span>
+                        <span class="main-price float-right" title="&euro;{{item.price  }}">
+                          <span class="text-secondary" style="font-weight: 500;font-size: 14px;" >From</span>
+                          &euro;{{ item.price }}</span>
+                      </h4>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+            {% else %}
+             <div  class="alert alert-warning" role="alert">
+              <span >Sorry, we couldn't find any matches for your search.</span>
+            </div>
+        {% endif %}  
+        
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
