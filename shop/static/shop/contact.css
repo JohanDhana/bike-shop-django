@@ -1,6 +1,7 @@
 body{
-    background: -webkit-linear-gradient(left, #0072ff, #00c6ff);
+background: -webkit-linear-gradient(left, #b6b6b6, #60767c);
 }
+
 .contact-form{
     background: #fff;
     margin-top: 10%;
@@ -9,15 +10,6 @@ body{
 }
 .contact-form .form-control{
     border-radius:1rem;
-}
-.contact-image{
-    text-align: center;
-}
-.contact-image img{
-    border-radius: 6rem;
-    width: 11%;
-    margin-top: -3%;
-    transform: rotate(29deg);
 }
 .contact-form form{
     padding: 14%;
@@ -29,7 +21,7 @@ body{
     margin-bottom: 8%;
     margin-top: -10%;
     text-align: center;
-    color: #0062cc;
+    color: #000000;
 }
 .contact-form .btnContact {
     width: 50%;
