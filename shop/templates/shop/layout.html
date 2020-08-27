@@ -37,18 +37,17 @@
                 <li class="nav-item">
                     <a class="nav-link btn btn-outline-success my-2 my-sm-0 py-1 login" href="/admin">Log in</a>
                 </li>
-                </li>
-                <li class="nav-item">
-                    <form method="POST">
-                       {% csrf_token %}
-                        <div class="search">
-                            {{form.search}}
-                            <button type="submit" class="searchButton">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
-                   </form>
-                </li>
+{#                <li class="nav-item">#}
+{#                    <form method="POST">#}
+{#                       {% csrf_token %}#}
+{#                        <div class="search">#}
+{#                            {{form.search}}#}
+{#                            <button type="submit" class="searchButton">#}
+{#                                <i class="fa fa-search"></i>#}
+{#                            </button>#}
+{#                        </div>#}
+{#                   </form>#}
+{#                </li>#}
             </ul>
         </div>
     </nav>

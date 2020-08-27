@@ -46,6 +46,19 @@
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
 }
 
+/*search homepage*/
+.search-block {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+}
+.input-search-text {
+    height: 52px;
+}
+.btn-search {
+    width: 52px;
+}
+
 @media (max-width: 991px) {
     .main-carousel-item {
         height: auto;

@@ -50,6 +50,24 @@
             <span class="fas fa-caret-right p-0 pl-4 text-light" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
+
+
+        <div class="w-100 search-block">
+            <div class="container">
+                <div class="col-md-7 m-auto">
+                  <form method="POST">
+                    <div class="input-group mb-3 shadow">
+                      {% csrf_token %}
+                          {{form.search}}
+{#                      <input type="text" class="form-control input-search-text" placeholder="BMX, Shimano...">#}
+                      <div class="input-group-append">
+                          <button class="btn btn-success btn-search" type="submit"><i class="fas fa-search fa-lg"></i></button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+            </div>
+        </div>
     </div>
 <!--end carousel-->
 
