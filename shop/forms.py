@@ -23,8 +23,8 @@ class SearchForm(forms.Form):
                     ('16', '16'), ('20', '20'), ('26', '26')]
 
     query = forms.CharField(max_length=100, widget=forms.TextInput(
-        attrs={'class': 'form__field form-control w-100 mt-3 mb-0 shadow-none', 'placeholder': 'Search'}))
+        attrs={'class': 'form__field form-control w-100 mt-3 shadow-none', 'placeholder': 'Search'}))
     category = forms.ChoiceField(widget=forms.Select(
-        attrs={'class': 'form-control', }), choices=choices_category, required=False)
+        attrs={'class': 'form-control form__field', }), choices=choices_category, required=False)
     size = forms.ChoiceField(widget=forms.Select(
-        attrs={'class': 'form-control', }), choices=choices_size)
+        attrs={'class': 'form-control form__field', }), choices=choices_size)

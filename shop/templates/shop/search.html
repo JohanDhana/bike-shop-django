@@ -3,18 +3,18 @@
 {% load static %}
 {% block extrahead  %}
     <link rel="stylesheet" href="{% static 'shop/search.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/fix_navbar.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container mt-5 pt-4">
   <div class="row" style="background-color: #f2f5f6;">
     <div class="col-lg-12">
       <div class="row align-items-center">
         <div class="col-md-3 back-home">
-          <a href="/" class=" btn mr-4 d-flex align-items-center text-secondary"
-            style="font-size: 20px;">
-            <span >Back</span>
-          </a>
+          <button class="btn mr-4 d-flex align-items-center text-secondary shadow-none" id="goBack" style="font-size: 20px;">
+            <i class="fas fa-arrow-left text-info mr-2"></i><span>Back</span>
+          </button>
         </div>
         <div class="col-md-9">
           <h3 class="title-h3">
@@ -30,49 +30,46 @@
         <div class="col-md-3 col-sm-12">
           <div class="row bg-white ml-0 pt-2 pb-2 mb-4 shadow">
             <div class="col-sm-12 btn-filter">
-              <button class="btn btn-default btn-block text-left text-secondary dropdown-toggle pl-0"
-                 (click)="showSearchBox = !showSearchBox">
-                Filter tours
+              <button class="btn btn-default btn-block text-left text-secondary dropdown-toggle pl-0" id="searchBox">
+                Filter options
               </button>
             </div>
             <div class="w-100 search-box" >
-            <form method="POST">
-              {% csrf_token %}
-              <div class="col-sm-12 position-relative" >
-           {{form.query}}
-            
-              </div>
-              <div class="col-sm-12 mt-2">
-                {{form.category}}
-              </div>
-              <div class="col-sm-12 my-2">
-                {{form.size}}
-              </div>
-              <div class=" col-sm-12">
-                <button type="submit"      class="form__field btn btn-block btn-outline-danger">
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
+                <form method="POST">
+                  {% csrf_token %}
+                  <div class="col-sm-12 position-relative" >
+                    {{form.query}}
+                  </div>
+                  <div class="col-sm-12 mt-2">
+                    {{form.category}}
+                  </div>
+                  <div class="col-sm-12 my-2">
+                    {{form.size}}
+                  </div>
+                  <div class=" col-sm-12">
+                    <button type="submit" class="form__field btn btn-block btn-outline-success">
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+                </form>
             </div>
-            </form>
           </div>
         </div>
         <div class="col-md-9 col-sm-12" style="margin-bottom: 15px;">
           <div class="position-relative" style="min-height: 328px;">
-
-                   {% if bikes %}
+            {% if bikes %}
             <ul class="list-group pull-down">
                 {% for item in bikes  %}
-              <li class="list-group-item p-0" >
+              <li class="list-group-item p-0 border" >
                 <a href="/bike/{{item.name}}" title="{{item.name}}" class="link" style="text-decoration: none;">
                   <div class="row m-0">
                     <div class="col-12 col-sm-6 col-md-4 px-0">
                       <img  title="{{item.name}}" src="{{item.image.url}}"
-                        class="mx-auto d-block img-fluid">
+                        class="mx-auto d-block img-fluid" alt="{{ item.name }}">
 {% comment %}<span class="description-category"   style="background-color: #73C82C  !important;left:0;">{{item.bike_categories}}</span> {% endcomment %}
                     </div>
                     <div class="col-12 col-sm-6 col-md-8 text-left text-sm-left">
-                      <h4 class="tour-title">{{ item.name }}</h4>
+                      <h4 class="bike-title">{{ item.name }}</h4>
                       <p class="mb-2">
                         <span class="small bg-warning text-white p-0 pl-1 pr-1">{{ item.bike_categories }}</span>
                       </p>
@@ -106,4 +103,6 @@
     </div>
   </div>
 </div>
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'shop/js/search.js' %}"></script>
 {% endblock %}

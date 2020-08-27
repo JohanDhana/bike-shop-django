@@ -31,12 +31,6 @@
   font-weight: 400;
   z-index: 1;
 }
-.city_name {
-  bottom: 15px;
-  left: 15px;
-  background-color: #73C82C  !important;
-  color: white;
-}
 .main-price {
   bottom: 15px;
   right: 15px;
@@ -59,7 +53,7 @@
 .btn-sort:hover {
   color: #212529 !important;
 }
-.tour-title {
+.bike-title {
   color: #4E4E4E;
 }
 /*form design*/
@@ -99,12 +93,8 @@
   outline: 1px solid #575757;
   border-radius: 4px;
 }
-.search-result .tour-title {
+.search-result .bike-title {
   font-size: 0.825rem;
-}
-.tour-result:hover {
-  cursor: pointer;
-  text-decoration: underline;
 }
 .result-price {
   font-size: 0.725rem;
@@ -124,14 +114,6 @@
   }
 }
 @media (max-width: 576px) {
-  .city_name, .main-price {
-    position: relative;
-    bottom: 0;
-  }
-  .city_name {
-    float: left;
-    left: 0;
-  }
   .main-price {
     float: right;
     right: 0;

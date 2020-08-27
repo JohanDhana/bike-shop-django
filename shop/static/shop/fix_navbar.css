@@ -1,0 +1,15 @@
+.navbar-expand-lg {
+    padding-top: .5rem !important;
+    background-color: #ffffff;
+}
+#navbarNav .navbar-nav .nav-link {
+    color: #000;
+}
+.brand-home {
+    opacity: 1 !important;
+}
+.bike-img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+}
