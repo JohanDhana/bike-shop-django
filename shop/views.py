@@ -83,17 +83,17 @@ def search(request):
             'query': search_query, 'category': search_category, 'size': search_size})
 
         if search_category and search_size:
-            bikes = Bikes.objects.filter(name__contains=search_query) & Bikes.objects.filter(
+            bikes = Bikes.objects.filter(name__icontains=search_query) & Bikes.objects.filter(
                 bike_categories=search_category) & Bikes.objects.filter(
                 size=search_size)
         elif search_size:
-            bikes = Bikes.objects.filter(name__contains=search_query) & Bikes.objects.filter(
+            bikes = Bikes.objects.filter(name__icontains=search_query) & Bikes.objects.filter(
                 size=search_size)
         elif search_category:
-            bikes = Bikes.objects.filter(name__contains=search_query) & Bikes.objects.filter(
+            bikes = Bikes.objects.filter(name__icontains=search_query) & Bikes.objects.filter(
                 bike_categories=search_category)
         else:
-            bikes = Bikes.objects.filter(name__contains=search_query)
+            bikes = Bikes.objects.filter(name__icontains=search_query)
 
     context = {'bikes': bikes, 'form': form, }
     return render(request, 'shop/search.html', context)
