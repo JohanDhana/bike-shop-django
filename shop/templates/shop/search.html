@@ -73,7 +73,7 @@
                       <p class="mb-2">
                         <span class="small bg-warning text-white p-0 pl-1 pr-1">{{ item.bike_categories }}</span>
                       </p>
-                      <p  class="subtitle">
+                      <p class="subtitle text-truncate">
                         <span>{{item.description}}</span>
                       </p>
                   
@@ -81,9 +81,7 @@
                         <span class="small text-secondary" >
                        Madhesia &nbsp;<span class="small">{{ item.size }}</span>
                         </span>
-                        <span class="main-price float-right" title="&euro;{{item.price  }}">
-                          <span class="text-secondary" style="font-weight: 500;font-size: 14px;" >From</span>
-                          &euro;{{ item.price }}</span>
+                        <span class="main-price float-right text-success font-weight-bold">&euro;{{ item.price }}</span>
                       </h4>
                     </div>
                   </div>
@@ -103,6 +101,8 @@
     </div>
   </div>
 </div>
+{% endblock %}
+{% block scripts %}
     {{ block.super }}
     <script type="text/javascript" src="{% static 'shop/js/search.js' %}"></script>
 {% endblock %}

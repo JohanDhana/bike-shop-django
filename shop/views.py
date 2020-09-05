@@ -70,7 +70,7 @@ def search(request):
             # ...
             print(form.cleaned_data)
             if form.cleaned_data['category']:
-                category = form.cleaned_data['category'].split('-')[1]
+                category = form.cleaned_data['category']
 
             if form.cleaned_data['size']:
                 size = form.cleaned_data['size']
@@ -79,7 +79,9 @@ def search(request):
             return HttpResponseRedirect('/search?q='+form.cleaned_data['query']+'&category='+category+'&size='+size)
     # if a GET (or any other method) we'll create a blank form
     else:
-        form = SearchForm()
+        form = SearchForm(initial={
+            'query': search_query, 'category': search_category, 'size': search_size})
+
         if search_category and search_size:
             bikes = Bikes.objects.filter(name__contains=search_query) & Bikes.objects.filter(
                 bike_categories=search_category) & Bikes.objects.filter(
@@ -93,5 +95,5 @@ def search(request):
         else:
             bikes = Bikes.objects.filter(name__contains=search_query)
 
-    context = {'bikes': bikes, 'form': form}
+    context = {'bikes': bikes, 'form': form, }
     return render(request, 'shop/search.html', context)

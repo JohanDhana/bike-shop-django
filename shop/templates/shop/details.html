@@ -19,26 +19,26 @@
               </ol>
             </nav>
         </div>
-        <div class="col-md-7">
-            <img src="{{bike.image.url}}" class="img-fluid shadow-sm bike-img" alt="{{bike.name}}">
-        </div>
-        <div class="col-md-5">
-            <h1 class="display-4 text-capitalize">{{bike.name}}</h1>
-            <small class="text-muted">Madhesia :{{bike.size}}</small><br>
-            <span class="badge badge-info">{{bike.price}} ALL  </span>
-            <p class="pt-4">
-                {{bike.description}}<br>
+        <div class="col-md-5 order-md-2">
+            <h1 class="display-4 text-capitalize">{{bike.name}} <span class="badge badge-success">{{bike.price}} &euro;</span></h1>
+            <small class="text-muted">Madhesia :{{bike.size}}</small>
+            <p>
                 <!-- short description -->
+                {{bike.description}},
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eaque eligendi molestiae? Autem deleniti dicta dolorum fuga, nam nostrum odit officiis optio perferendis placeat quae quisquam repellendus.
             </p>
+        </div>
+        <div class="col-md-7 order-md-1">
+            <img src="{{bike.image.url}}" class="img-fluid shadow-sm bike-img" alt="{{bike.name}}">
         </div>
     </div>
 
     <div class="row mt-4">
         <div class="col-md-12">
-            <p class="text-secondary">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores commodi facilis, minima non numquam quam sit tempora voluptates. Doloremque doloribus est excepturi, facilis magni minus nostrum nulla numquam obcaecati, quod ratione tenetur. Aliquid assumenda consequuntur eos est illum, iure laudantium porro. Dolorem, doloribus, soluta! Deleniti, dolor doloribus eaque eos error facilis hic ipsa laborum maxime minima neque obcaecati qui repellat tempore temporibus. Ad debitis dolorum earum eius eum ipsam nulla quas unde voluptate voluptatibus. Aperiam architecto consequatur distinctio dolorum error fugit nam quas repellendus! Architecto beatae delectus deleniti dolorem doloribus eligendi est eveniet exercitationem id illo officia optio porro, quidem quis, quos rem voluptas? Assumenda eaque facere ipsum iure nemo neque placeat quos. Deserunt recusandae sint soluta suscipit? Architecto distinctio illo labore placeat recusandae temporibus, vero. Accusamus, consequuntur cum distinctio dolorum, enim maxime modi nostrum praesentium quidem recusandae repellendus rerum, sint unde! Atque distinctio dolore dolorum expedita labore numquam tempore!
-            </p>
+            <!-- full description -->
+            <div class="full-description">
+                {{ bike.full_description | safe}}
+            </div>
         </div>
     </div>
 </div>

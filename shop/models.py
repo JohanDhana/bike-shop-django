@@ -8,6 +8,7 @@ class Bikes(models.Model):
     size = models.CharField(max_length=2, default=26)
     color = models.CharField(max_length=10, default="Blu")
     description = models.TextField(default="bicklete")
+    full_description = models.TextField(default="full description...")
     price = models.CharField(max_length=5, default=0)
     image = models.ImageField(default="defalut.png")
     age_category = models.CharField(default=16, max_length=15)
