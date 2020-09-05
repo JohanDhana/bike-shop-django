@@ -57,11 +57,50 @@
         {% endblock %}
 
     <!-- FOOTER -->
-      <footer class="footer shadow-sm">
+      <footer class="footer shadow-sm bg-light">
           <div class="container">
-              <span class="float-right"><a href="#">Back to top</a></span>
-              <span>&copy; 2020 Bike Shop, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></span>
+              <div class="row">
+                <div class="col-lg-6 text-center text-lg-left">
+                  <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                      <a href="#">About</a>
+                    </li>
+                    <li class="list-inline-item">&sdot;</li>
+                    <li class="list-inline-item">
+                      <a href="#">Contact</a>
+                    </li>
+                    <li class="list-inline-item">&sdot;</li>
+                    <li class="list-inline-item">
+                      <a href="#">Terms of Use</a>
+                    </li>
+                    <li class="list-inline-item">&sdot;</li>
+                    <li class="list-inline-item">
+                      <a href="#">Privacy Policy</a>
+                    </li>
+                  </ul>
+                </div>
+                  <div class="col-lg-6 text-center text-lg-right">
+                      <ul class="list-inline mb-0 pt-2">
+                        <li class="list-inline-item mr-3">
+                          <a href="#">
+                            <i class="fab fa-facebook fa-2x fa-fw"></i>
+                          </a>
+                        </li>
+                        <li class="list-inline-item mr-3">
+                          <a href="#">
+                            <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+                          </a>
+                        </li>
+                        <li class="list-inline-item">
+                          <a href="#">
+                            <i class="fab fa-instagram fa-2x fa-fw"></i>
+                          </a>
+                        </li>
+                      </ul>
+                  </div>
+              </div>
           </div>
+          <p class="bg-white text-muted small text-center py-2 mb-0">&copy; 2020 Bike Shop, Inc. All Rights Reserved.</p>
       </footer>
 
 {% block scripts %}

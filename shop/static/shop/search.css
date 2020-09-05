@@ -36,9 +36,6 @@
   right: 15px;
   font-size: 22px;
 }
-.small {
-  margin-top: 10%;
-}
 .list-group-item:hover {
   box-shadow: 0 0 11px rgba(33,33,33,.3);
 }
