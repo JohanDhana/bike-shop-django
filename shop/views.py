@@ -97,3 +97,9 @@ def search(request):
 
     context = {'bikes': bikes, 'form': form, }
     return render(request, 'shop/search.html', context)
+
+
+def category(request, name):
+    selected_category = Bikes.objects.filter(bike_categories__iexact=name)
+    context = {'bikes': selected_category, 'category_name': name}
+    return render(request, 'shop/category.html', context)

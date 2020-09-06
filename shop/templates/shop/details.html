@@ -3,6 +3,28 @@
 {% load static %}
 {% block extrahead  %}
     <link rel="stylesheet" href="{% static 'shop/fix_navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/lib/swiper/swiper-bundle.min.css' %}">
+    <style>
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+      }
+      .swiper-button-white {
+          text-shadow: 0 0 #000000;
+      }
+      .swiper-pagination-bullet {
+          border: 1px solid rgba(0, 0, 0, .2);
+      }
+      /*loader issue*/
+      .swiper-slide {
+          min-height: 500px;
+      }
+      @media (max-width: 991px) {
+          .swiper-slide {
+              min-height: 300px;
+          }
+      }
+    </style>
 {% endblock %}
 
 {% block content %}
@@ -14,7 +36,7 @@
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb bg-transparent pl-0 mb-0">
                 <li class="breadcrumb-item"><a href="/search?size={{ bike.size }}">Madhesia:{{bike.size}}</a></li>
-                <li class="breadcrumb-item"><a href="#">{{ bike.bike_categories }}</a></li>
+                <li class="breadcrumb-item"><a href="/category/{{ bike.bike_categories }}">{{ bike.bike_categories }}</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ bike.name }}</li>
               </ol>
             </nav>
@@ -29,7 +51,42 @@
             </p>
         </div>
         <div class="col-md-7 order-md-1">
-            <img src="{{bike.image.url}}" class="img-fluid shadow-sm bike-img" alt="{{bike.name}}">
+            <!-- Swiper -->
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <!-- Required swiper-lazy class and image source specified in data-src attribute -->
+                  <img src="{{bike.image.url}}" class="shadow-sm bike-img swiper-lazy" alt="{{bike.name}}">
+                  <!-- Preloader image -->
+                  <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
+                </div>
+                <div class="swiper-slide">
+                  <img data-src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=850&q=80" class="swiper-lazy bike-img"/>
+                  <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
+                </div>
+                <div class="swiper-slide">
+                  <img data-src="https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=850&q=80" class="swiper-lazy bike-img"/>
+                  <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
+                </div>
+                <div class="swiper-slide">
+                  <img data-src="https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=850&q=80" class="swiper-lazy bike-img"/>
+                  <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
+                </div>
+                <div class="swiper-slide">
+                  <img data-src="https://images.unsplash.com/photo-1549216963-72c1712c1196?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=850&q=80" class="swiper-lazy bike-img"/>
+                  <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
+                </div>
+                <div class="swiper-slide">
+                  <img data-src="https://images.unsplash.com/photo-1541584285245-c83a93cce0e8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=850&q=80" class="swiper-lazy bike-img"/>
+                  <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
+                </div>
+              </div>
+              <!-- Add Pagination -->
+              <div class="swiper-pagination swiper-pagination-white"></div>
+              <!-- Navigation -->
+              <div class="swiper-button-next swiper-button-white"></div>
+              <div class="swiper-button-prev swiper-button-white"></div>
+            </div>
         </div>
     </div>
 
@@ -42,6 +99,26 @@
         </div>
     </div>
 </div>
-        
 
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'shop/lib/swiper/swiper-bundle.min.js' %}"></script>
+    <!-- Initialize Swiper -->
+    <script>
+      const swiper = new Swiper('.swiper-container', {
+        // Enable lazy loading
+        lazy: true,
+        zoom: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      });
+    </script>
 {% endblock %}

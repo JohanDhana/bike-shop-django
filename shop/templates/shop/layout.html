@@ -13,11 +13,12 @@
 {% block extrahead %}{% endblock %}
 
   <title>Bike shop</title>
+  <meta name="description" content="Mary's simple recipe for maple bacon donuts makes a sticky, sweet treat with just a hint of salt that you'll keep coming back for.">
 </head>
 
 <body>
 <!--navbar-->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top pt-4 pr-4">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top pt-4 pr-4" id="MainNavbar">
         <a href="/" class="navbar-brand brand-home">BIKE SHOP</a>
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -27,9 +28,15 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Galery</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Categories
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="/category/bmx">BMX</a>
+                      <a class="dropdown-item" href="/category/mtb">MTB</a>
+                      <a class="dropdown-item" href="/category/shimano">Shimano</a>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/contact">Contact us</a>
@@ -58,16 +65,16 @@
 
     <!-- FOOTER -->
       <footer class="footer shadow-sm bg-light">
-          <div class="container">
+          <div class="container py-3">
               <div class="row">
-                <div class="col-lg-6 text-center text-lg-left">
+                <div class="col-lg-6 text-center text-lg-left" style="line-height: 32px;">
                   <ul class="list-inline mb-0">
                     <li class="list-inline-item">
                       <a href="#">About</a>
                     </li>
                     <li class="list-inline-item">&sdot;</li>
                     <li class="list-inline-item">
-                      <a href="#">Contact</a>
+                      <a href="/contact">Contact</a>
                     </li>
                     <li class="list-inline-item">&sdot;</li>
                     <li class="list-inline-item">
@@ -80,7 +87,7 @@
                   </ul>
                 </div>
                   <div class="col-lg-6 text-center text-lg-right">
-                      <ul class="list-inline mb-0 pt-2">
+                      <ul class="list-inline mb-0">
                         <li class="list-inline-item mr-3">
                           <a href="#">
                             <i class="fab fa-facebook fa-2x fa-fw"></i>
@@ -107,39 +114,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            // menu [desktop]
-            const navbar = $('.navbar-expand-lg');
-            const logo = $('.brand-home');
-
-            const animateNavbar = () => {
-                if ($(this).scrollTop() > 120) {
-                    navbar.removeClass('pt-4').addClass('bg-white shadow-sm');
-                    logo.css('opacity', '1');
-                }
-                if ($(this).scrollTop() < 120) {
-                    navbar.removeClass('bg-white shadow-sm').addClass('pt-4');
-                    logo.css('opacity', '0');
-                }
-            }
-
-            if ($(window).innerWidth() > 991) {
-                // at the beginning
-                animateNavbar();
-
-                // when scroll
-                $(window).scroll(function () {
-                    animateNavbar();
-                })
-            }
-
-            $('#goBack').click(() => {
-                window.history.back();
-            });
-        });
-    </script>
+    <script src="{% static 'shop/js/main.js' %}"></script>
 {% endblock %}
 </body>
 
