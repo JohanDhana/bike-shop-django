@@ -19,7 +19,7 @@ class HomeSearchForm(forms.Form):
 
 class SearchForm(forms.Form):
     choices_category = [('', 'Kategori'), ('1-BMX', 'BMX'), ('2-MTB', 'MTB')]
-    choices_size = [('12', '12'), ('14', '14'),
+    choices_size = [('', 'Madhesi'), ('12', '12'), ('14', '14'),
                     ('16', '16'), ('20', '20'), ('26', '26')]
 
     query = forms.CharField(max_length=100, widget=forms.TextInput(
@@ -27,4 +27,4 @@ class SearchForm(forms.Form):
     category = forms.ChoiceField(widget=forms.Select(
         attrs={'class': 'form-control form__field', }), choices=choices_category, required=False)
     size = forms.ChoiceField(widget=forms.Select(
-        attrs={'class': 'form-control form__field', }), choices=choices_size)
+        attrs={'class': 'form-control form__field', }), choices=choices_size, required=False)
