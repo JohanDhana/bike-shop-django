@@ -61,24 +61,29 @@ def search(request):
     search_size = request.GET.get('size', '')
     category = ''
     size = ''
-    print(search_category)
+    query = ''
+
     if request.method == 'POST':
         form = SearchForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
             # ...
-            print(form.cleaned_data)
+            query = ''.join(
+                e for e in form.cleaned_data['query'] if e.isalnum())
+
             if form.cleaned_data['category']:
                 category = form.cleaned_data['category']
 
             if form.cleaned_data['size']:
                 size = form.cleaned_data['size']
 
-            # redirect to a new URL:
-            return HttpResponseRedirect('/search?q='+form.cleaned_data['query']+'&category='+category+'&size='+size)
+        # redirect to a new URL:
+        return HttpResponseRedirect('/search?q='+query+'&category='+category+'&size='+size)
     # if a GET (or any other method) we'll create a blank form
     else:
+        search_query = ''.join(e for e in search_query if e.isalnum())
+
         form = SearchForm(initial={
             'query': search_query, 'category': search_category, 'size': search_size})
 
