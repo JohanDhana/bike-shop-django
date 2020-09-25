@@ -3,7 +3,7 @@
 {% load static %}
 {% block extrahead  %}
     <link rel="stylesheet" href="{% static 'shop/fix_navbar.css' %}">
-    <link rel="stylesheet" href="{% static 'shop/lib/swiper/swiper-bundle.min.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/libraries/swiper/swiper-bundle.min.css' %}">
     <style>
       .swiper-slide {
         text-align: center;
@@ -104,7 +104,7 @@
 
 {% block scripts %}
     {{ block.super }}
-    <script type="text/javascript" src="{% static 'shop/lib/swiper/swiper-bundle.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'shop/libraries/swiper/swiper-bundle.min.js' %}"></script>
     <!-- Initialize Swiper -->
     <script>
       const swiper = new Swiper('.swiper-container', {

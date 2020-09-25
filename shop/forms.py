@@ -14,7 +14,7 @@ class ContactForm(forms.Form):
 
 class HomeSearchForm(forms.Form):
     search = forms.CharField(max_length=100, widget=forms.TextInput(
-        attrs={'class': 'form-control input-search-text', 'placeholder': 'BMX, MTB...'}))
+        attrs={'class': 'form-control input-search-text border-0', 'placeholder': 'BMX, MTB...'}))
 
 
 class SearchForm(forms.Form):
