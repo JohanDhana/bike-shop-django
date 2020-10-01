@@ -1,8 +1,19 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from .models import Bikes
 from .forms import ContactForm, HomeSearchForm, SearchForm
-from django.urls import reverse
+from rest_framework import viewsets
+from rest_framework import permissions
+from shop.serializers import BikesSerializer
+
+
+class BikesViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Bikes to be viewed or edited.
+    """
+    queryset = Bikes.objects.all()
+    serializer_class = BikesSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 # Create your views here.
 
