@@ -11,7 +11,7 @@ class BikesViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows Bikes to be viewed or edited.
     """
-    queryset = Bikes.objects.all()
+    queryset = Bikes.objects.all().order_by('id')
     serializer_class = BikesSerializer
     permission_classes = [permissions.IsAuthenticated]
 
