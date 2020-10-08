@@ -20,3 +20,15 @@ class Bikes(models.Model):
 
     class Meta:
         verbose_name_plural = 'Bikes'
+
+
+class Images(models.Model):
+    bike = models.ForeignKey(Bikes, on_delete=models.CASCADE)
+    title = models.CharField(max_length=50, blank=True)
+    image = models.ImageField(blank=True, upload_to='images/')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = 'Images'

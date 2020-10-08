@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .models import Bikes
+from .models import Bikes, Images
 from .forms import ContactForm, HomeSearchForm, SearchForm
 from rest_framework import viewsets
 from rest_framework import permissions
@@ -40,7 +40,8 @@ def index(request):
 
 def details(request, name):
     selected_bike = Bikes.objects.get(name=name)
-    show_bike = {'bike': selected_bike}
+    images = Images.objects.filter(bike_id=selected_bike.id)
+    show_bike = {'bike': selected_bike, 'images': images}
     return render(request, 'shop/details.html', show_bike)
 
 
