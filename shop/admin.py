@@ -4,6 +4,8 @@ import admin_thumbnails
 # Register your models here.
 from .models import Bikes, Images
 
+admin.site.site_header = 'Bike shop'
+
 
 @admin_thumbnails.thumbnail('image')
 class BikesImageInline(admin.TabularInline):
@@ -18,8 +20,8 @@ class ImagesAdmin(admin.ModelAdmin):
 
 
 class BikesAdmin(admin.ModelAdmin):
-    # list_display = ['title', 'category', 'status', 'image_tag']
-    list_filter = ['bike_categories']
+    list_display = ['name', 'bike_categories']
+    list_filter = ['size', 'bike_categories']
     inlines = [BikesImageInline]
     # prepopulated_fields = {'slug': ('title',)}
 
