@@ -11,7 +11,8 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'shop/home.css' %}">
 {% block extrahead %}{% endblock %}
-
+ 
+ {% load myapptags %}
   <title>Bike shop</title>
   <meta name="description" content="Mary's simple recipe for maple bacon donuts makes a sticky, sweet treat with just a hint of salt that you'll keep coming back for.">
 </head>
@@ -41,6 +42,23 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/contact">Contact us</a>
                 </li>
+
+                 <!-- Cart -->
+                    <li class="header-cart dropdown default-dropdown">
+                        <a href="/shopcart" >
+                            <div class="header-btns-icon">
+                                <i class="fa fa-shopping-cart"></i>
+                                {% load myapptags %}
+                                {% shopcartcount user.id as count %}
+                                <span class="qty">{{ count }}</span>
+                            </div>
+                            <br>
+
+                        </a>
+
+                    </li>
+                    <!-- /Cart -->
+
                 {% if user.is_authenticated %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

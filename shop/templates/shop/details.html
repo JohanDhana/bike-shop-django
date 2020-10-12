@@ -86,6 +86,21 @@
     </div>
 </div>
 
+      <form action="/addtoshopcart/{{ bike.id }}" method="post"  id="addchart-form">
+         {% csrf_token %}
+      <div id="SelectedProduct">
+          <p><strong>Availability:</strong> {% if bike.amount > 0  %} In Stock {% else %} Out of Stock {% endif %}</p>
+          <h3 class="product-price">{{ bike.price }} </h3>
+          <div class="qty-input">
+              <span class="text-uppercase">QTY: </span>
+              <input class="input" name="quantity" type="number" value="1" min="1" max="{{ bike.amount }}">
+              <button type="submit" {% if bike.amount < 1  %} disabled {% endif %} class="primary-btn add-to-cart">
+                <i class="fa fa-shopping-cart"></i> Add to Cart
+            </button>
+        </div>
+    </div>
+</form>
+
 {% endblock %}
 
 {% block scripts %}
