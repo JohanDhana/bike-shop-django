@@ -147,7 +147,7 @@ def addtoshopcart(request, id):
         data.quantity = 1
         data.variant_id = None
         data.save()  #
-        messages.success(request, "Product added to Shopcart")
+        messages.success(request, "Product added to cart")
         return HttpResponseRedirect(url)
 
 
@@ -169,7 +169,7 @@ def shopcart(request):
 @login_required(login_url='/admin')  # Check login
 def deletefromcart(request, id):
     ShopCart.objects.filter(id=id).delete()
-    messages.success(request, "Your item deleted form Shopcart.")
+    messages.success(request, "Your item deleted form shopping cart!")
     return HttpResponseRedirect("/shopcart")
 
 

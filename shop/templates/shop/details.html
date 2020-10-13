@@ -30,6 +30,16 @@
 {% block content %}
 
 <div class="container mt-5 pt-4">
+    {% if messages %}
+    <div class="row">
+        <div class="col-md-12">
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
     <div class="row align-items-center">
         <div class="col-md-12">
             <!-- Breadcrumbs -->
@@ -42,13 +52,30 @@
             </nav>
         </div>
         <div class="col-md-5 order-md-2">
-            <h1 class="display-4 text-capitalize">{{bike.name}} <span class="badge badge-success">{{bike.price}} &euro;</span></h1>
+            <h1 class="display-4 text-capitalize">{{bike.name}} <span class="badge badge-secondary">{{bike.price}} &euro;</span></h1>
             <small class="text-muted">Madhesia :{{bike.size}}</small>
             <p>
                 <!-- short description -->
                 {{bike.description}},
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eaque eligendi molestiae? Autem deleniti dicta dolorum fuga, nam nostrum odit officiis optio perferendis placeat quae quisquam repellendus.
             </p>
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="/addtoshopcart/{{ bike.id }}" method="post" class="form-inline">
+                         {% csrf_token %}
+                          <div id="SelectedProduct">
+                              <p><strong>Availability:</strong> {% if bike.amount > 0  %} In Stock {% else %} Out of Stock {% endif %}</p>
+                              <div class="qty-input">
+                                  <span class="text-uppercase">QTY: </span>
+                                  <input class="form-control" name="quantity" type="number" value="1" min="1" max="{{ bike.amount }}">
+                                  <button type="submit" {% if bike.amount < 1  %} disabled {% endif %} class="btn btn-success">
+                                    <i class="fa fa-shopping-cart"></i> Add to Cart
+                                </button>
+                            </div>
+                          </div>
+                    </form>
+                </div>
+            </div>
         </div>
         <div class="col-md-7 order-md-1">
             <!-- Swiper -->
@@ -85,21 +112,6 @@
         </div>
     </div>
 </div>
-
-      <form action="/addtoshopcart/{{ bike.id }}" method="post"  id="addchart-form">
-         {% csrf_token %}
-      <div id="SelectedProduct">
-          <p><strong>Availability:</strong> {% if bike.amount > 0  %} In Stock {% else %} Out of Stock {% endif %}</p>
-          <h3 class="product-price">{{ bike.price }} </h3>
-          <div class="qty-input">
-              <span class="text-uppercase">QTY: </span>
-              <input class="input" name="quantity" type="number" value="1" min="1" max="{{ bike.amount }}">
-              <button type="submit" {% if bike.amount < 1  %} disabled {% endif %} class="primary-btn add-to-cart">
-                <i class="fa fa-shopping-cart"></i> Add to Cart
-            </button>
-        </div>
-    </div>
-</form>
 
 {% endblock %}
 

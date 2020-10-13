@@ -43,22 +43,6 @@
                     <a class="nav-link" href="/contact">Contact us</a>
                 </li>
 
-                 <!-- Cart -->
-                    <li class="header-cart dropdown default-dropdown">
-                        <a href="/shopcart" >
-                            <div class="header-btns-icon">
-                                <i class="fa fa-shopping-cart"></i>
-                                {% load myapptags %}
-                                {% shopcartcount user.id as count %}
-                                <span class="qty">{{ count }}</span>
-                            </div>
-                            <br>
-
-                        </a>
-
-                    </li>
-                    <!-- /Cart -->
-
                 {% if user.is_authenticated %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -74,6 +58,18 @@
                     <a class="nav-link btn btn-outline-success my-2 my-sm-0 py-1 login" href="{% url 'admin:login' %}">Log in</a>
                 </li>
                 {% endif %}
+
+                <!-- Cart -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/shopcart" >
+                        <i class="fa fa-shopping-cart"></i>
+                        {% load myapptags %}
+                        {% shopcartcount user.id as count %}
+                        <span class="qty">{{ count }}</span>
+                    </a>
+
+                </li>
+                <!-- /Cart -->
 {#                <li class="nav-item">#}
 {#                    <form method="POST">#}
 {#                       {% csrf_token %}#}

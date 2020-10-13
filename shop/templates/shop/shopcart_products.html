@@ -1,87 +1,87 @@
 {% extends 'shop/layout.html' %}
 
-
 {% load static %}
+
 {% block extrahead  %}
-    <link rel="stylesheet" href="{% static 'shop/fix_navbar.css' %}">
-    {% endblock %}
+<link rel="stylesheet" href="{% static 'shop/fix_navbar.css' %}">
+{% endblock %}
     
 {% block content %}
 
+    <div class="container mt-5 pt-4">
+        {% if messages %}
+        <div class="row">
+            <div class="col-md-12">
+                {% for message in messages %}
+                  <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
 
-        <!-- container -->
-        <div class="container">
-            <!-- row -->
-            <div class="row">
-
-                <div class="col-md-12">
-                    <div class="order-summary clearfix">
-                        <div class="section-title">
-                            <h3 class="title">Shopcart bike List</h3>
-                        </div>
-                        <table class="shopping-cart-table table">
-                            <thead>
-                            <tr>
-                                <th></th>
-                                <th>bike</th>
-                                <th class="text-center">Price</th>
-                                <th class="text-center">Quantity</th>
-                                <th class="text-center">Total</th>
-                                <th class="text-right"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            {% for rs in shopcart %}
-                                <tr>
-                                    <td class="thumb">
-                                            <img width="45px" src="{{rs.bike.image.url}}" alt="">
-                                    </td>
-                                    <td class="details">
-                                        <a href="/bike/ {{ rs.bike.name }}"></a>  </td>
-                                    <td class="price text-center"><strong>
-                                            {{ rs.bike.price }}
-                                    </strong></td>
-                                    <td class="qty text-center"><strong>{{rs.quantity}}</strong></td>
-                                    <td class="total text-center"><strong class="primary-color">$
-                                            {{ rs.amount }}
-                                    </strong></td>
-                                    <td class="text-right"><a class="btn btn-primary" href="/deletefromcart/{{ rs.id }}" onclick="return confirm('Delete ! Are you sure?')" ><i class="fa fa-close"></i></a></td>
-                                </tr>
-
-                            {% endfor %}
-
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <th class="empty" colspan="3"></th>
-                                <th>SUBTOTAL</th>
-                                <th colspan="2" class="sub-total">{{ total }}</th>
-                            </tr>
-                            <tr>
-                                <th class="empty" colspan="3"></th>
-                                <th>SHIPING</th>
-                                <td colspan="2">Free Shipping</td>
-                            </tr>
-                            <tr>
-                                <th class="empty" colspan="3"></th>
-                                <th>TOTAL</th>
-                                <th colspan="2" class="total">{{ total }}</th>
-                            </tr>
-                            </tfoot>
-                        </table>
-                        <div class="pull-right">
-                            <a href="/orderbike" class="primary-btn">Place Order</a>
-                        </div>
+        <div class="card shopping-cart">
+            <div class="card-header bg-dark text-light">
+                <i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i>Shopping cart
+                <small class="float-right">Actions</small>
+            </div>
+            <div class="card-body">
+                {% for rs in shopcart %}
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-2 text-center">
+                        <img class="img-responsive" height="100px" src="{{rs.bike.image.url}}">
                     </div>
+                    <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
+                        <a href="/bike/ {{ rs.bike.name }}" class="text-dark">
+                            <h4 class="font-weight-bold">{{ rs.bike.name }}</h4>
+                            <p class="text-truncate">{{ rs.bike.description }}</p>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-3 col-sm-3 col-md-6 text-md-right pt-1">
+                                <h6><strong>{{ rs.bike.price | floatformat:2 }}&euro; <span class="text-muted">x</span></strong></h6>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 text-center">
+                                <input type="text" class="w-50 text-center m-auto" disabled name="qty" value="{{rs.quantity}}">
+                            </div>
+                            <div class="col-2 col-sm-2 col-md-2 text-right">
+                                <a href="/deletefromcart/{{ rs.id }}" onclick="return confirm('Delete ! Are you sure?')"  class="btn btn-sm rounded-circle delete-cart p-0 shadow-none">
+                                    <i class="fas fa-times-circle fa-2x text-danger" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
 
+                    </div>
+                </div>
+                <hr>
+                {% endfor %}
+            </div>
+
+        {% if total > 0 %}
+            <div class="card-footer d-flex">
+                <div class="mr-auto">
+                    {% comment %}<div class="row">
+                        <div class="col-6">
+                            <input type="text" class="form-control" placeholder="cupone code">
+                        </div>
+                        <div class="col-6">
+                            <input type="submit" class="btn btn-default" value="Use cupone">
+                        </div>
+                    </div>{% endcomment %}
                 </div>
 
-
+                <div class="px-2">
+                    <div class="row">
+                        <div class="col-6">Total price: <b>{{ total | floatformat:2 }}€</b></div>
+                        <div class="col-6"><a href="/orderbike" class="btn btn-success btn-block mt-2">Checkout</a></div>
+                    </div>
+                </div>
             </div>
-            <!-- /row -->
+        {% else %}
+            <h3 class="text-info text-center">Your shopping cart is empty!</h3>
+        {% endif %}
         </div>
-        <!-- /container -->
+    </div>
 
 
 {% endblock %}

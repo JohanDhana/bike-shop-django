@@ -12,11 +12,11 @@ class Bikes(models.Model):
     color = models.CharField(max_length=10, default="Blu")
     description = models.TextField(default="bicklete")
     full_description = RichTextField(blank=True, null=True)
-    price = models.CharField(max_length=5, default=0)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=100)
     image = models.ImageField(default="defalut.png")
     age_category = models.CharField(default=16, max_length=15)
     bike_categories = models.CharField(default="BMX", max_length=50)
-    amount = models.CharField(max_length=5, default=20)
+    amount = models.DecimalField(max_digits=10, decimal_places=2, default=10)
 
     def __str__(self):
         return self.name
