@@ -64,40 +64,54 @@ class ShopCartForm(ModelForm):
         fields = ['quantity']
 
 
-# class Order(models.Model):
-#     STATUS = (
-#         ('New', 'New'),
-#         ('Accepted', 'Accepted'),
-#         ('Preaparing', 'Preaparing'),
-#         ('OnShipping', 'OnShipping'),
-#         ('Completed', 'Completed'),
-#         ('Canceled', 'Canceled'),
-#     )
-#     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-#     code = models.CharField(max_length=5, editable=False)
-#     first_name = models.CharField(max_length=10)
-#     last_name = models.CharField(max_length=10)
-#     phone = models.CharField(blank=True, max_length=20)
-#     address = models.CharField(blank=True, max_length=150)
-#     city = models.CharField(blank=True, max_length=20)
-#     country = models.CharField(blank=True, max_length=20)
-#     total = models.FloatField()
-#     status = models.CharField(max_length=10, choices=STATUS, default='New')
-#     ip = models.CharField(blank=True, max_length=20)
-#     adminnote = models.CharField(blank=True, max_length=100)
-#     create_at = models.DateTimeField(auto_now_add=True)
-#     update_at = models.DateTimeField(auto_now=True)
+class Order(models.Model):
+    STATUS = (
+        ('New', 'New'),
+        ('Accepted', 'Accepted'),
+        ('Preaparing', 'Preaparing'),
+        ('OnShipping', 'OnShipping'),
+        ('Completed', 'Completed'),
+        ('Canceled', 'Canceled'),
+    )
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    code = models.CharField(max_length=5, editable=False)
+    first_name = models.CharField(max_length=10)
+    last_name = models.CharField(max_length=10)
+    phone = models.CharField(blank=True, max_length=20)
+    address = models.CharField(blank=True, max_length=150)
+    city = models.CharField(blank=True, max_length=20)
+    country = models.CharField(blank=True, max_length=20)
+    total = models.FloatField()
+    status = models.CharField(max_length=10, choices=STATUS, default='New')
+    ip = models.CharField(blank=True, max_length=20)
+    adminnote = models.CharField(blank=True, max_length=100)
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
 
-#     def __str__(self):
-#         return self.user.first_name
+    def __str__(self):
+        return self.user.first_name
 
 
-# class OrderForm(ModelForm):
-#     class Meta:
-#         model = Order
-#         fields = ['first_name', 'last_name',
-#                   'address', 'phone', 'city', 'country']
+class OrderForm(ModelForm):
+    class Meta:
+        model = Order
+        fields = ['first_name', 'last_name',
+                  'address', 'phone', 'city', 'country']
 
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone = models.CharField(blank=True, max_length=20)
+    address = models.CharField(blank=True, max_length=150)
+    city = models.CharField(blank=True, max_length=20)
+    country = models.CharField(blank=True, max_length=50)
+    image = models.ImageField(blank=True, upload_to='images/users/')
+
+    def __str__(self):
+        return self.user.username
+
+    def user_name(self):
+        return self.user.first_name + ' ' + self.user.last_name + ' [' + self.user.username + '] '
 
 # class OrderProduct(models.Model):
 #     STATUS = (
