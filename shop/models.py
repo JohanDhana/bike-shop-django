@@ -38,7 +38,7 @@ class Images(models.Model):
 
 
 class ShopCart(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    user = models.CharField(max_length=20, default=0)
     bike = models.ForeignKey(Bikes, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField()
 

@@ -16,7 +16,7 @@ register = template.Library()
 
 @register.simple_tag
 def shopcartcount(userid):
-    count = ShopCart.objects.filter(user_id=userid).count()
+    count = ShopCart.objects.filter(user=userid).count()
     return count
 
 # views-> "category =  categoryTree(0,'','tr')"  html-> "ategoryTree 0 '' LANGUAGE_CODE as category"

@@ -5,8 +5,8 @@ from .forms import ContactForm, HomeSearchForm, SearchForm
 from rest_framework import viewsets
 from rest_framework import permissions
 from shop.serializers import BikesSerializer
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from random import random
 
 
 class BikesViewSet(viewsets.ModelViewSet):
@@ -21,6 +21,8 @@ class BikesViewSet(viewsets.ModelViewSet):
 
 
 def index(request):
+    current_user = user_id_cookie(request)
+
     if request.method == 'POST':
         form = HomeSearchForm(request.POST)
         # check whether it's valid:
@@ -55,7 +57,6 @@ def contact(request):
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
-            print(form.data)
             return HttpResponseRedirect('/thank-you')
 
     # if a GET (or any other method) we'll create a blank form
@@ -124,36 +125,33 @@ def category(request, name):
     return render(request, 'shop/category.html', context)
 
 
-@login_required(login_url='/admin')  # Check login
+def user_id_cookie(request):
+    if request.COOKIES.get('uuid') is None:
+        return str(random())
+    else:
+        return request.COOKIES.get('uuid')
+
+
 def addtoshopcart(request, id):
     url = request.META.get('HTTP_REFERER')  # get last url
-    current_user = request.user  # Access User Session information
-
+    current_user = user_id_cookie(request)
     if request.method == 'POST':  # if there is a post
         form = ShopCartForm(request.POST)
         if form.is_valid():
             data = ShopCart()
-            data.user_id = current_user.id
+            data.user = current_user
             data.bike_id = id
             data.quantity = form.cleaned_data['quantity']
             data.save()
             messages.success(request, "Product added to Shopcart ")
-            return HttpResponseRedirect(url)
-
-    else:  # if there is no post
-        data = ShopCart()
-        data.user_id = current_user.id
-        data.product_id = id
-        data.quantity = 1
-        data.variant_id = None
-        data.save()  #
-        messages.success(request, "Product added to cart")
-        return HttpResponseRedirect(url)
+            res = HttpResponseRedirect(url)
+            res.set_cookie('uuid', current_user)
+            return res
 
 
 def shopcart(request):
-    current_user = request.user  # Access User Session information
-    shopcart = ShopCart.objects.filter(user_id=current_user.id)
+    current_user = user_id_cookie(request)
+    shopcart = ShopCart.objects.filter(user=current_user)
     total = 0
     for rs in shopcart:
         total += float(rs.bike.price) * rs.quantity
@@ -161,28 +159,30 @@ def shopcart(request):
     context = {'shopcart': shopcart,
                'total': total,
                }
-    print(shopcart)
 
-    return render(request, 'shop/shopcart_products.html', context)
+    res = render(request, 'shop/shopcart_products.html', context)
+    res.set_cookie('uuid', current_user)
+    return res
 
 
-@login_required(login_url='/admin')  # Check login
 def deletefromcart(request, id):
-    ShopCart.objects.filter(id=id).delete()
+    current_user = user_id_cookie(request)
+    shopcart = ShopCart.objects.filter(
+        user=current_user) & ShopCart.objects.filter(id=id)
+    shopcart.delete()
     messages.success(request, "Your item deleted form shopping cart!")
     return HttpResponseRedirect("/shopcart")
 
 
 def orderproduct(request):
     current_user = request.user
-    shopcart = ShopCart.objects.filter(user_id=current_user.id)
+    shopcart = ShopCart.objects.filter(user=current_user)
     total = 0
     for rs in shopcart:
         total += rs.bike.price * rs.quantity
 
     if request.method == 'POST':  # if there is a post
         form = OrderForm(request.POST)
-        # return HttpResponse(request.POST.items())
         if form.is_valid():
             # Send Credit card to bank,  If the bank responds ok, continue, if not, show the error
             # ..............
@@ -217,7 +217,7 @@ def orderproduct(request):
                 # ************ <> *****************
 
             # Clear & Delete shopcart
-            ShopCart.objects.filter(user_id=current_user.id).delete()
+            ShopCart.objects.filter(user=current_user).delete()
             request.session['cart_items'] = 0
             messages.success(
                 request, "Your Order has been completed. Thank you ")
@@ -227,7 +227,6 @@ def orderproduct(request):
             return HttpResponseRedirect("/shop/orderproduct")
 
     form = OrderForm()
-    print(current_user)
     context = {'shopcart': shopcart,
                'category': category,
                'total': total,
