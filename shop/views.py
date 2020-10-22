@@ -43,6 +43,7 @@ def index(request):
 
 
 def details(request, name):
+    print(name)
     selected_bike = Bikes.objects.get(name=name)
     images = Images.objects.filter(bike_id=selected_bike.id)
     show_bike = {'bike': selected_bike, 'images': images}
@@ -127,7 +128,7 @@ def category(request, name):
 
 def user_id_cookie(request):
     if request.COOKIES.get('uuid') is None:
-        return str(random())
+        return str(random())[2:19]
     else:
         return request.COOKIES.get('uuid')
 
@@ -138,11 +139,17 @@ def addtoshopcart(request, id):
     if request.method == 'POST':  # if there is a post
         form = ShopCartForm(request.POST)
         if form.is_valid():
-            data = ShopCart()
-            data.user = current_user
-            data.bike_id = id
-            data.quantity = form.cleaned_data['quantity']
-            data.save()
+            shopcart = ShopCart.objects.filter(
+                user=current_user) & ShopCart.objects.filter(bike_id=id)
+            if shopcart.exists():
+                shopcart.update(
+                    quantity=shopcart[0].quantity+form.cleaned_data['quantity'])
+            else:
+                data = ShopCart()
+                data.user = current_user
+                data.bike_id = id
+                data.quantity = form.cleaned_data['quantity']
+                data.save()
             messages.success(request, "Product added to Shopcart ")
             res = HttpResponseRedirect(url)
             res.set_cookie('uuid', current_user)
