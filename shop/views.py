@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .models import Bikes, Images, ShopCart, ShopCartForm, OrderForm, Order, UserProfile
+from django.utils.crypto import get_random_string
+from .models import Bikes, Images, ShopCart, ShopCartForm, OrderForm, Order, OrderProduct
 from .forms import ContactForm, HomeSearchForm, SearchForm
 from rest_framework import viewsets
 from rest_framework import permissions
@@ -182,7 +183,8 @@ def deletefromcart(request, id):
 
 
 def orderproduct(request):
-    current_user = request.user
+    current_user = current_user = user_id_cookie(request)
+
     shopcart = ShopCart.objects.filter(user=current_user)
     total = 0
     for rs in shopcart:
@@ -200,8 +202,8 @@ def orderproduct(request):
             data.last_name = form.cleaned_data['last_name']
             data.address = form.cleaned_data['address']
             data.city = form.cleaned_data['city']
-            data.phone = form.cleaned_data['phone']
-            data.user_id = current_user.id
+            data.email = form.cleaned_data['email']
+            data.user = current_user
             data.total = total
             data.ip = request.META.get('REMOTE_ADDR')
             ordercode = get_random_string(5).upper()  # random cod
@@ -212,30 +214,25 @@ def orderproduct(request):
                 detail = OrderProduct()
                 detail.order_id = data.id  # Order Id
                 detail.bike_id = rs.bike_id
-                detail.user_id = current_user.id
+                detail.user_id = current_user
                 detail.quantity = rs.quantity
                 detail.price = rs.bike.price
-                detail.amount = rs.amount
                 detail.save()
-                # ***Reduce quantity of sold product from Amount of Product
-                product = Bikes.objects.get(id=rs.bike_id)
-                product.amount -= rs.quantity
-                product.save()
-                # ************ <> *****************
 
             # Clear & Delete shopcart
             ShopCart.objects.filter(user=current_user).delete()
             request.session['cart_items'] = 0
+            user = {
+                'first_name': form.cleaned_data['first_name'], 'last_name': form.cleaned_data['last_name']}
             messages.success(
                 request, "Your Order has been completed. Thank you ")
-            return render(request, 'Order_Completed.html', {'ordercode': ordercode, 'category': category})
+            return render(request, 'shop/Order_Completed.html', {'ordercode': ordercode, 'user': user})
         else:
             messages.warning(request, form.errors)
-            return HttpResponseRedirect("/shop/orderproduct")
+            return HttpResponseRedirect("/orderproduct")
 
     form = OrderForm()
     context = {'shopcart': shopcart,
-               'category': category,
                'total': total,
                'form': form,
                'profile': current_user,

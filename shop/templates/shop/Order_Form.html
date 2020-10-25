@@ -11,129 +11,177 @@
 
 
         <!-- container -->
-        <div class="container">
-            <!-- row -->
-            <div  class="row">
-                <Form action="" method="post">
-                    {% csrf_token %}
-                    <div class="col-md-6">
-                        <div class="billing-details">
+        <div class="container mt-5 pt-4">
 
-                            <div class="section-title">
-                                <h4 class="title">Shipping Details</h4>
-                            </div>
-                            <p><label for="id_first_name">First name:</label>
-                                <input type="text" name="first_name"  value="{{ user.first_name }}" class="input" maxlength="10" required id="id_first_name"></p>
-                            <p><label for="id_last_name">Last name:</label>
-                                <input type="text" name="last_name"  value="{{ user.last_name }}" class="input" maxlength="10" required id="id_last_name"></p>
-                            <p><label for="id_address">Address:</label>
-                                <input type="text" name="address" value="{{ profile.address }}" class="input" maxlength="150" id="id_address"></p>
-                            <p><label for="id_phone">Phone:</label>
-                                <input type="text" name="phone"  value="{{ profile.phone }}"  class="input" maxlength="20" id="id_phone"></p>
-                            <p><label for="id_city">City:</label>
-                                <select name="city" class="input" id="id_city">
-                                    <option value="{{ profile.city }}" selected>{{ profile.city }}</option>
-                                    <option value="İstanbul">Istanbul</option>
-                                    <option value="Ankara">Ankara</option>
-                                    <option value="İzmir">Izmir</option>
-                                    <option value="Bursa">Bursa</option>
-                                    <option value="Konya">Konya</option>
-                                    <option value="Yozgat">Yozgat</option>
-                                </select></p>
-                            <p><label for="id_first_name">Country :</label>
-                                <input type="text" name="country" class="input" id="id_country" value="{{ profile.country }}"></p>
-                            <div class="pull-right">
-                                <button  type="submit" class="primary-btn">Complete Order</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="shiping-methods">
-                            <div class="section-title">
-                                <h4 class="title">Payment Information</h4>
-                            </div>
-                            <p><label for="id_first_name">Total: {{ total }} USD </label>
-                                <input type="text" name="total" class="input" readonly value="${{ total "></p>
-                            <p><label for="id_first_name">Credit Card Holder</label>
-                                <input type="text" name="holder" class="input"  value=""></p>
-                            <p><label for="id_first_name">Credit Card Number</label>
-                                <input type="text" name="number" class="input"  value=""></p>
-                            <p><label for="id_first_name">Credit Exp Date/Year</label>
-                                <input type="text" name="ecpdate" class="input"  placeholder="mm/yy"></p>
-                            <p><label for="id_first_name">Security Number</label>
-                                <input type="text" name="secnumber" class="input"  value=""></p>
-                        </div>
-                    </div>
-
-                </Form>
-
-                <div class="col-md-12">
-                    <div class="order-summary clearfix">
-                        <div class="section-title">
-                            <h3 class="title">Shopcart Product List</h3>
-                        </div>
-                                                <table class="shopping-cart-table table">
-                            <thead>
-                            <tr>
-                                <th></th>
-                                <th>Product</th>
-                                <th class="text-center">Price</th>
-                                <th class="text-center">Quantity</th>
-                                <th class="text-center">Total</th>
-                                <th class="text-right"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            {% for rs in shopcart %}
-                                <tr>
-                                    <td class="thumb">
-                                  
-                                            <img width="35px" src="{{rs.bike.image.url}}" alt="">
-
-                                    </td>
-                                    <td class="details">
-                                        <a href="/bike/{{ rs.bike.name }}">{{rs.bike.name}} </a>  </td>
-                                    <td class="price text-center"><strong>
-                                            {{ rs.bike.price}} 
-                  
-                                    </strong></td>
-                                    <td class="qty text-center"><strong>{{rs.quantity}}</strong></td>
-                                    <td class="total text-center"><strong class="primary-color">$
-                                            {{ rs.amount}} 
-                                    </strong></td>
-                                    <td class="text-right"><a href="/order/deletefromcart/{{ rs.id }}" onclick="return confirm('Delete ! Are you sure?')" class="main-btn icon-btn"><i class="fa fa-close"></i></a></td>
-                                </tr>
-
-                            {% endfor %}
-
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <th class="empty" colspan="3"></th>
-                                <th>SUBTOTAL</th>
-                                <th colspan="2" class="sub-total">{{ total}} </th>
-                            </tr>
-                            <tr>
-                                <th class="empty" colspan="3"></th>
-                                <th>SHIPING</th>
-                                <td colspan="2">Free Shipping</td>
-                            </tr>
-                            <tr>
-                                <th class="empty" colspan="3"></th>
-                                <th>TOTAL</th>
-                                <th colspan="2" class="total">{{ total}} </th>
-                            </tr>
-                            </tfoot>
-                        </table>
-
-                    </div>
-
-                </div>
-
-
+        {% if messages %}
+        <div class="row">
+            <div class="col-md-12">
+                {% for message in messages %}
+                  <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+                {% endfor %}
             </div>
+        </div>
+        {% endif %}
+
+            <!-- row -->
+           <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Your cart</span>
+          </h4>
+          <ul class="list-group mb-3">
+          {% for cart in shopcart %}
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">{{cart.bike.name}} x {{cart.quantity}}</h6>
+                <small class="text-muted">{{cart.bike.description}} </small>
+              </div>
+              <span class="text-muted">{{cart.bike.price}} $</span>
+            </li>
+            {% endfor %}
+                <li class="list-group-item d-flex justify-content-between">
+              <span>Total (USD)</span>
+              <strong>{{total}}</strong>
+            </li>
+          </ul>
+
+          <form class="card p-2">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Promo code">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-secondary">Redeem</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-8 order-md-1">
+          <h4 class="mb-3">Billing address</h4>
+          <form class="needs-validation" novalidate="" method="post" action="">
+          {% csrf_token %}
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="firstName">First name</label>
+                <input type="text" class="form-control" name="first_name" placeholder="" value="" required="">
+                <div class="invalid-feedback">
+                  Valid first name is required.
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="lastName">Last name</label>
+                <input type="text" class="form-control" name="last_name" placeholder="" value="" required="">
+                <div class="invalid-feedback">
+                  Valid last name is required.
+                </div>
+              </div>
+            </div>
+
+
+            <div class="mb-3">
+              <label for="email">Email <span class="text-muted">(Optional)</span></label>
+              <input type="email" class="form-control" name="email" placeholder="you@example.com">
+              <div class="invalid-feedback">
+                Please enter a valid email address for shipping updates.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="address">Address</label>
+              <input type="text" class="form-control" name="address" placeholder="1234 Main St" required="">
+              <div class="invalid-feedback">
+                Please enter your shipping address.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
+              <input type="text" class="form-control" name="address2" placeholder="Apartment or suite">
+            </div>
+
+            <div class="row">
+              <div class="col-md-5 mb-3">
+                <label for="country">Country</label>
+                <select class="custom-select d-block w-100" name="country" required="">
+                  <option value="">Choose...</option>
+                  <option>United States</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please select a valid country.
+                </div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="city">City</label>
+                <select class="custom-select d-block w-100" name="city" required="">
+                  <option value="">Choose...</option>
+                  <option>California</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please provide a valid state.
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="zip">Zip</label>
+                <input type="text" class="form-control" name="zip" placeholder="" required="">
+                <div class="invalid-feedback">
+                  Zip code required.
+                </div>
+              </div>
+            </div>
+            <hr class="mb-4">
+
+            <h4 class="mb-3">Payment</h4>
+
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio">
+                <input name="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
+                <label class="custom-control-label" for="credit">Credit card</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input name="debit" name="paymentMethod" type="radio" class="custom-control-input" required="">
+                <label class="custom-control-label" for="debit">Debit card</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input name="paypal" name="paymentMethod" type="radio" class="custom-control-input" required="">
+                <label class="custom-control-label" for="paypal">Paypal</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="cc-name">Name on card</label>
+                <input type="text" class="form-control" name="cc-name" placeholder="" required="">
+                <small class="text-muted">Full name as displayed on card</small>
+                <div class="invalid-feedback">
+                  Name on card is required
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="cc-number">Credit card number</label>
+                <input type="text" class="form-control" name="cc-number" placeholder="" required="">
+                <div class="invalid-feedback">
+                  Credit card number is required
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3 mb-3">
+                <label for="cc-expiration">Expiration</label>
+                <input type="text" class="form-control" name="cc-expiration" placeholder="" required="">
+                <div class="invalid-feedback">
+                  Expiration date required
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="cc-expiration">CVV</label>
+                <input type="text" class="form-control" name="cc-cvv" placeholder="" required="">
+                <div class="invalid-feedback">
+                  Security code required
+                </div>
+              </div>
+            </div>
+            <hr class="mb-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+          </form>
+        </div>
+      </div>
             <!-- /row -->
         </div>
         <!-- /container -->

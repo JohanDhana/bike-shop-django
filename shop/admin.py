@@ -2,7 +2,7 @@ from django.contrib import admin
 import admin_thumbnails
 
 # Register your models here.
-from .models import Bikes, Images, ShopCart
+from .models import Bikes, Images, ShopCart, OrderProduct
 
 admin.site.site_header = 'Bike shop'
 
@@ -29,3 +29,4 @@ class BikesAdmin(admin.ModelAdmin):
 admin.site.register(Bikes, BikesAdmin)
 admin.site.register(Images, ImagesAdmin)
 admin.site.register(ShopCart)
+admin.site.register(OrderProduct)
