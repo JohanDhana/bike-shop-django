@@ -1,5 +1,5 @@
-#Django bike shop
-###This project is a bike e-commerce  shop made in  Python and Djnago.
+ # Django bike shop
+### This project is a bike e-commerce  shop made in  Python and Djnago.
 
 Downloading project:
 Clone as zip file and open it your computer or if you have git application
