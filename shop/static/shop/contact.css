@@ -1,12 +1,12 @@
 body{
 background: -webkit-linear-gradient(left, #b6b6b6, #60767c);
+margin-bottom: 140px;
 }
 
 .contact-form{
     background: #fff;
     margin-top: 10%;
     margin-bottom: 5%;
-    width: 70%;
 }
 .contact-form .form-control{
     border-radius:1rem;
