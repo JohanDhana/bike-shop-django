@@ -1,0 +1,8 @@
+.category-cover {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+}
+.category-cover .jumbotron {
+    background-color: rgba(0, 0, 0, .35);
+}
