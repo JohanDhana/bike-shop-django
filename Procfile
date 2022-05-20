@@ -1,1 +1,1 @@
-web: gunicorn bikeshop.wsgi
+web: python manage.py runserver
