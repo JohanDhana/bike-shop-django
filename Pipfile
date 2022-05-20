@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+asgiref = "==3.4.1"
+django-admin-thumbnails = "==0.2.5"
+django-ckeditor = "==6.0.0"
+django-js-asset = "==1.2.2"
+djangorestframework = "==3.12.1"
+pytz = "==2020.1"
+six = "==1.15.0"
+sqlparse = "==0.3.1"
+Django = "==3.1.14"
+Pillow = "==9.0.1"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
