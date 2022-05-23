@@ -21,3 +21,12 @@ pip install Pillow
 For running
 
 python manage.py runserver
+
+Demo site
+https://bike-shop-django.herokuapp.com/ 
+
+Dashboard
+https://bike-shop-django.herokuapp.com/admin
+
+user:admin
+password:admin
