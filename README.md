@@ -29,4 +29,5 @@ Dashboard
 https://bike-shop-django.herokuapp.com/admin
 
 user:admin
+
 password:admin
