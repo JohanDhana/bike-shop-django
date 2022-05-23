@@ -1,0 +1,117 @@
+/*navbar*/
+#navbarNav .navbar-nav .nav-link {
+    color: #ffffff;
+    font-weight: bolder;
+}
+.bg-white #navbarNav .navbar-nav .nav-link {
+    color: #000000;
+    font-weight: bolder;
+}
+.navbar-brand {
+    opacity: 0;
+}
+.navbar-expand-lg {
+    -webkit-transition: all .35s;
+    transition: all .35s;
+}
+.carousel-control-next, .carousel-control-prev {
+    z-index: 10;
+    width: 5%;
+}
+.carousel-control-next span, .carousel-control-prev span {
+    font-size: 44px;
+}
+.main-carousel-item {
+    height: 100vh;
+    min-height: 360px;
+}
+.carousel-caption {
+    background-color: rgba(2, 2, 2, 0.35);
+    left: 0;
+    bottom: 0;
+}
+.carousel-caption .caption-text {
+    position: absolute;
+    top: calc(50% - 163px);
+    text-shadow: 1px 1px 0 black;
+}
+#navbarNav .nav-item .login:hover {
+    color: #ffffff;
+}
+/*bike card*/
+.bike a {
+    color: inherit !important;
+}
+.bike .card:hover {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+
+/*search homepage*/
+.search-block {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+}
+.input-search-text {
+    height: 52px;
+}
+.btn-search {
+    width: 52px;
+}
+
+@media (max-width: 991px) {
+    .main-carousel-item {
+        height: auto;
+        max-height: 640px;
+    }
+    #navbarNav .navbar-nav .nav-link {
+        color: #000;
+    }
+    .navbar-light {
+        background-color: #ffffff !important;
+        padding-top: 8px !important;
+    }
+    .navbar-brand {
+        opacity: 1;
+    }
+    .carousel-control-next, .carousel-control-prev {
+        width: 15%;
+    }
+}
+
+/* Sticky footer styles */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 95px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 95px;
+  line-height: 1; /* Vertically center the text there */
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.footer > p {
+    line-height: initial;
+}
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1280px !important;
+    }
+}
+@media (min-width: 1600px) {
+    .container {
+        max-width: 1400px !important;
+    }
+}
