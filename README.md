@@ -1,32 +1,42 @@
  # Django bike shop
 ### This project is a bike e-commerce  shop made in  Python and Django.
 
-Downloading project:
-Clone as zip file and open it your computer or if you have git application
+## Downloading project:
+Clone or download as zip
+
+```
 https://github.com/JohanDhana/bike-shop-django.git
-Before running this project you need intall below list apps and packages
+```
 
-Install Python 3.7 or above -> https://www.python.org/
-Install Pip -> python get-pip.py
+To get this project up and running you should start by having Python installed on your computer. It's advised you create a virtual environment to store your projects dependencies separately. You can install virtualenv with
 
+```
+pip install virtualenv
+```
+
+Clone or download this repository and open it in your editor of choice. In a terminal (mac/linux) or windows terminal, run the following command in the base directory of this project
+
+```
+virtualenv env
+```
+
+That will create a new folder `env` in your project directory. Next activate it with this command on mac/linux:
+
+```
+source env/bin/active
+```
+
+```
  pip install -r requirements.txt
-
+```
+```
 pip install Django
-pip install django-admin-thumbnails
-pip install django-ckeditor
-pip install django-currencies
-pip install django-mptt
-pip install Pillow
+```
 
-For running
-
+## For running
+```
 python manage.py runserver
-
-Demo site
-https://bike-shop-django.herokuapp.com/ 
-
-Dashboard
-https://bike-shop-django.herokuapp.com/admin
+```
 
 user:admin
 
