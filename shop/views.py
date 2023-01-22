@@ -44,7 +44,6 @@ def index(request):
 
 
 def details(request, name):
-    print(name)
     selected_bike = Bikes.objects.get(name=name)
     images = Images.objects.filter(bike_id=selected_bike.id)
     show_bike = {'bike': selected_bike, 'images': images}
