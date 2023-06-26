@@ -41,3 +41,13 @@ python manage.py runserver
 user:admin
 
 password:admin
+
+
+## Screenshots
+![App Screenshot](media/homepage.png?text=App+Screenshot+Here)
+![App Screenshot](media/category.png?text=App+Screenshot+Here)
+![App Screenshot](media/bike-details.png?text=App+Screenshot+Here)
+![App Screenshot](media/checkout.png?text=App+Screenshot+Here)
+![App Screenshot](media/admin-bike-details.png?text=App+Screenshot+Here)
+![App Screenshot](media/cart.PNG?text=App+Screenshot+Here)
+![App Screenshot](media/django-rest-framework.png?text=App+Screenshot+Here)
