@@ -44,10 +44,34 @@ password:admin
 
 
 ## Screenshots
+HOMEPAGE
+<hr/>
+
 ![App Screenshot](media/homepage.png?text=App+Screenshot+Here)
+
+CATEGORY PAGE
+<hr/>
+
 ![App Screenshot](media/category.png?text=App+Screenshot+Here)
+
+DETAILS PAGE
+<hr/>
+
 ![App Screenshot](media/bike-details.png?text=App+Screenshot+Here)
+
+CHECKOUT PAGE
+<hr/>
+
 ![App Screenshot](media/checkout.png?text=App+Screenshot+Here)
-![App Screenshot](media/admin-bike-details.png?text=App+Screenshot+Here)
+CART PAGE
+<hr/>
+
 ![App Screenshot](media/cart.PNG?text=App+Screenshot+Here)
+ADMIN BIKE DETAIL PAGE
+<hr/>
+
+![App Screenshot](media/admin-bike-details.png?text=App+Screenshot+Here)
+DJANGO REST FRAMEWORK ```/bikes```
+<hr/>
+
 ![App Screenshot](media/django-rest-framework.png?text=App+Screenshot+Here)
